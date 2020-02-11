@@ -37,6 +37,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func newsRoutine(c chan News, Location string) {
+	defer wg.Done()
+
 	var n News
 	resp, _ := http.Get(Location)
 	bytes, _ := ioutil.ReadAll(resp.Body)
